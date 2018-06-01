@@ -55,29 +55,14 @@
 
     <div class="container">
         <div data-pager-shell>
-            <ul class="Index">
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2018/06/01/spring初始化浅析/">spring初始化浅析</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2018-06-01T12:55:52.000Z" itemprop="datePublished">
-    2018-06-01
-  </time>
-  
-  
-</div>
-
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>spring初始化浅析</h1>
     </header>
-    <div>
-      
-        <pre><code>前言
+
+    <section>
+      <pre><code>前言
 </code></pre><p>本文主要简单讲解在web容器中Spring初始化的过程，因个人能力有限，文中难免有误，口下留情。</p>
 <p>###1、从web.xml说起<br>我们在做一个web项目时，如果想使用spring做依赖注入框架，都会在web.xml中配置如下一段代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;classpath*:/spring-context*.xml&lt;/param-value&gt;</span><br><span class="line">  &lt;/context-param&gt;</span><br><span class="line">  &lt;listener&gt;</span><br><span class="line">    &lt;listener-<span class="class"><span class="keyword">class</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">org</span>.<span class="title">springframework</span>.<span class="title">web</span>.<span class="title">context</span>.<span class="title">ContextLoaderListener</span></span></span><br><span class="line"><span class="class">    &lt;/<span class="title">listener</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">  &lt;/<span class="title">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -85,57 +70,26 @@
 <p>###2、<code>ContextLoaderListener</code>监听器###<br> 源代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContextLoaderListener</span> <span class="keyword">extends</span> <span class="title">ContextLoader</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ContextLoaderListener</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ContextLoaderListener</span><span class="params">(WebApplicationContext context)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>(context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Initialize the root web application context.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent event)</span> </span>&#123;</span><br><span class="line">	initWebApplicationContext(event.getServletContext());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Close the root web application context.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent event)</span> </span>&#123;</span><br><span class="line">	closeWebApplicationContext(event.getServletContext());</span><br><span class="line">	ContextCleanupListener.cleanupAttributes(event.getServletContext());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>通过源代码我们可以看到，该监听器实现了<code>ServletContentListener</code>, 在web容器初始化的时候，会执行监听器中的<code>contextInitialized</code>方法，关于<code>ServletContentListener</code> 具体可参考该博文[ServletContextListener使用详解][1]<br>[1]: <a href="https://blog.csdn.net/zhaozheng7758/article/details/6103700" target="_blank" rel="noopener">https://blog.csdn.net/zhaozheng7758/article/details/6103700</a></p>
 
+
       
-    </div>
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2018-06-01T12:55:52.000Z" itemprop="datePublished">
+              2018-06-01
+            </time>
+          </div>
+          
+      </section>
+    
+    
 </article>
 
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2018/05/23/LINUN常用命令总结/">LINUN常用命令总结</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2018-05-23T13:50:28.000Z" itemprop="datePublished">
-    2018-05-23
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Linux/">Linux</a> }
-  </li>
-
-
-  </ul>
-  
   
 </div>
-
-    </header>
-    <div>
-      
-        <p>1、 防火墙<br>1) 重启后生效<br>开启： chkconfig iptables on<br>关闭： chkconfig iptables off </p>
-<p>2）关闭某（80）指定端口<br>vi /etc/sysconfig/iptables<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>service iptables restart</p>
-<p>2) 即时生效，重启后失效<br>检查状态：service iptables status<br>开启： service iptables start<br>关闭： service iptables stop<br>2、压缩/解压<br>压缩<br>tar -zcvf  name.tar  /opt/for/name/<br>解压<br>
-        
-          <div class="more-link">
-            <a href="/2018/05/23/LINUN常用命令总结/#more">Read On »</a>
-          </div>
-        
-      
-    </div>
-</article>
-
-    </li>
-  
-</ul>
-
 
             <footer>
     <div>© 2016 - syukoushin </div>
