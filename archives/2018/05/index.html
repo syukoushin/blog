@@ -1,17 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<%- partial('_partial/head') %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+<meta name="keywords" content="syukoushin,朱香新">
+
+  <title>syukoushin</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
 <body>
 <div class="Shell">
-    <%- partial('_partial/sidebar') %>
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/zxx.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>syukoushin</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/syukoushin">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
     <div class="container">
         <div data-pager-shell>
-            <%- body %>
-            <%- partial('_partial/footer') %>
+            <div class="Archives">
+  
+  
+  
+    
+    <section class="TimeSection">
+    <h1 class="time-section-year">
+        2018
+    </h1>
+    <ul class="time-section-list">
+      
+      
+        <li>
+            <a href="/2018/05/23/LINUN常用命令总结/">
+                <h2>LINUN常用命令总结</h2>
+            </a>
+            <div class='ListMeta'>
+  <time datetime="2018-05-23T13:50:28.000Z" itemprop="datePublished">
+    2018-05-23
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Linux/">Linux</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+        </li>
+      
+    </ul>
+</section>
+
+  
+</div>
+            <footer>
+    <div>© 2016 - syukoushin </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
         </div>
     </div>
 </div>
-<%- js('js/pager/dist/singlepager.js') %>
+<script src="/js/pager/dist/singlepager.js"></script>
 <script>
 var sp = new Pager('data-pager-shell')
 

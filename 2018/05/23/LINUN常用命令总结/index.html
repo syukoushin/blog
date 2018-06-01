@@ -1,17 +1,127 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<%- partial('_partial/head') %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+<meta name="keywords" content="linux,Linux,syukoushin,朱香新">
+
+  <title>LINUN常用命令总结 | syukoushin</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
 <body>
 <div class="Shell">
-    <%- partial('_partial/sidebar') %>
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/zxx.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>syukoushin</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/syukoushin">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
     <div class="container">
         <div data-pager-shell>
-            <%- body %>
-            <%- partial('_partial/footer') %>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>LINUN常用命令总结</h1>
+    </header>
+
+    <section>
+      <p>1、 防火墙<br>1) 重启后生效<br>开启： chkconfig iptables on<br>关闭： chkconfig iptables off </p>
+<p>2）关闭某（80）指定端口<br>vi /etc/sysconfig/iptables<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>service iptables restart</p>
+<p>2) 即时生效，重启后失效<br>检查状态：service iptables status<br>开启： service iptables start<br>关闭： service iptables stop<br>2、压缩/解压<br>压缩<br>tar -zcvf  name.tar  /opt/for/name/<br>解压<br><a id="more"></a><br>3、java相关<br>1） 查看java路径<br>whereis java<br>which java （java执行路径）<br>echo $JAVA_HOME<br>echo $PATH<br>2）配置Linux的环境变量：(记得source .bash_profile)<br>.         修改/etc/profile文件 （全局所有用户）<br>vi 此文件/etc/profile<br>在profile文件末尾加入：<br>export JAVA_HOME=/usr/share/jdk1.7.0_25<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar<br>让环境变量生效，执行配置文件令其立刻生效命令#: source /etc/profile</p>
+<p>.修改.bash_profile文件 （某个用户权限使用这些环境变量）<br>.bash_profile文件末尾加入：<br>export JAVA_HOME=/usr/share/jdk1.6.0_20<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>.shell终端执行下列命令： （临时用）<br>export JAVA_HOME=/usr/share/jdk1.6.0_14<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>3）卸载jdk<br>·找到jdk安装目录的_uninst子目录<br>·在shell终端执行命令./uninstall.sh即可卸载jdk。<br>4、端口号相关<br>1）查看端口号<br>lsof -i:4446</p>
+<p>5、改系统时间：<br>   date -s “2007-08-03 14:15:00”<br>6、ftp/sftp命令<br>      ftp 10.228.245.64 60221<br>      kpidownload  KpiDownload1303</p>
+<p>sftp <a href="mailto:root@10.142.56.67" target="_blank" rel="noopener">root@10.142.56.67</a> 22</p>
+<blockquote>
+<p>password<br>接着输入用户名 、密码 退出 bye</p>
+</blockquote>
+<p>7、查看系统重启情况<br>last reboot<br>who -b</p>
+<p>8、查看硬盘大小<br>df -h<br>9 、查看目录空间大小<br>du<br>10、查看cpu信息<br> cat /proc/cpuinfo |grep name<br>11、查看内存信息<br> cat /proc/meminfo</p>
+<p>8、定时任务<br>crontab -e   或者 vi /etc/crontab</p>
+<p>9、查询nfs服务状态：service nfs status<br>      启动nfs服务：service nfs start<br>      挂载：mount<br> 10.142.60.90:/opt/tomcat_8.5/webapps/taskmanage/attachment /opt/tomcat_8.5/webapps/ta        skmanage/attachment<br>卸载：umount attachment<br>10、SecureCRT 安装rz 、sz<br>yum install lrzsz</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2018-05-23T13:50:28.000Z" itemprop="datePublished">
+              2018-05-23
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Linux/">Linux</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2016 - syukoushin </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
         </div>
     </div>
 </div>
-<%- js('js/pager/dist/singlepager.js') %>
+<script src="/js/pager/dist/singlepager.js"></script>
 <script>
 var sp = new Pager('data-pager-shell')
 
