@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-<meta name="keywords" content="syukoushin,朱香新">
-
-  <title>syukoushin</title>
-  
-  
+  <title><% if (page.title){ %><%= page.title %> | <% } %><%= config.title %></title>
+  <% if (theme.source_han_font) { %>
+  <% } %>
   <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <%- css('//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css') %>
+  <%- css('css/style') %>
 </head>
 
 <body>
@@ -72,10 +69,10 @@
       
         <li>
             <a href="/2018/06/01/spring初始化浅析/">
-                <h2>spring初始化浅析</h2>
+                <h2></h2>
             </a>
             <div class='ListMeta'>
-  <time datetime="2018-06-01T12:55:52.000Z" itemprop="datePublished">
+  <time datetime="2018-05-31T16:00:00.000Z" itemprop="datePublished">
     2018-06-01
   </time>
   
